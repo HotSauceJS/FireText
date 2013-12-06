@@ -25,7 +25,7 @@ var allowOrigin = process.env.ALLOW_ORIGIN || 'cors_allow_origin';
 var getUserByName = function(name, callback) {
     myRootRef.auth(token, function(anErr, aResult) {
         myUserRef = myRootRef.child('users');
-        myUserRef.on('value', function(snapshot){
+        myUserRef.once('value', function(snapshot){
             var users = snapshot.val();
             var user = users.filter(function(entry) {
                 if (entry.name == name) return entry;
@@ -38,7 +38,7 @@ var getUserByName = function(name, callback) {
 var getUserByPhone = function(phone, callback) {
     myRootRef.auth(token, function(anErr, aResult) {
         myUserRef = myRootRef.child('users');
-        myUserRef.on('value', function(snapshot){
+        myUserRef.once('value', function(snapshot){
             var users = snapshot.val();
             var user = users.filter(function(entry) {
                 if (entry.phone == phone) return entry;
