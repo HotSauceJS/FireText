@@ -20,6 +20,8 @@ var token = tokenGenerator.createToken({name:'superadmin'}, {admin:true, debug:t
 
 var defaultRoom = process.env.DEFAULT_ROOM || 'default_room';
 
+var allowOrigin = process.env.ALLOW_ORIGIN || 'cors_allow_origin';
+
 var getUserByName = function(name, callback) {
     myRootRef.auth(token, function(anErr, aResult) {
         myUserRef = myRootRef.child('users');
@@ -79,7 +81,7 @@ var sendSMS = function(to, message, callback){
 app.use(express.bodyParser());
 
 app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", allowOrigin);
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
  });
