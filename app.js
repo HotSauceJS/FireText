@@ -88,9 +88,8 @@ app.all('*', function(req, res, next) {
 
 app.post('/message', function(req, res){
     console.log(req.body.From, req.body.Body);
-    sendMessage(req.body.From, req.body.Body, function(){
-        res.end();
-    });
+    sendMessage(req.body.From, req.body.Body);
+    res.end();
 });
 
 app.post('/mention', function(req,res){
