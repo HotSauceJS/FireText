@@ -78,10 +78,6 @@ var sendSMS = function(to, message, callback){
 
 app.use(express.bodyParser());
 
-app.get('/', function(req,res){
-    res.send('still here');
-});
-
 app.post('/message', function(req, res){
     console.log(req.body.From, req.body.Body);
     sendMessage(req.body.From, req.body.Body, function(){
