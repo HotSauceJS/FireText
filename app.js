@@ -78,6 +78,12 @@ var sendSMS = function(to, message, callback){
 
 app.use(express.bodyParser());
 
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+ });
+
 app.post('/message', function(req, res){
     console.log(req.body.From, req.body.Body);
     sendMessage(req.body.From, req.body.Body, function(){
